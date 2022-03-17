@@ -48,6 +48,8 @@ const ToggleBox = styled.div`
     cursor: pointer;
   }
   & > p {
+    position: relative;
+    top: 1px;
     font-family: Noto Sans KR Medium;
     font-size: 14px;
     color: #323d45;
