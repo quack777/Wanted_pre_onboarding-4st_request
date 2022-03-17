@@ -191,6 +191,7 @@ const DropdownBtn = styled.button`
   justify-content: space-around;
   background: ${({ isChecked }: { isChecked?: boolean }) => (isChecked ? '#1565C0' : '#ffffff')};
   color: ${({ isChecked }: { isChecked?: boolean }) => (isChecked ? '#ffffff' : '#323D45')};
+  cursor: pointer;
   &:hover {
     border: 1px solid #2196f3;
   }
@@ -227,6 +228,7 @@ const UlBox = styled.ul`
     width: 18px;
     height: 18px;
     margin-right: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -239,6 +241,7 @@ const RefreshBtn = styled.button`
   justify-content: space-between;
   align-items: center;
   border: none;
+  cursor: pointer;
   & > img {
     margin-right: 12px;
   }
