@@ -231,6 +231,8 @@ const UlBox = styled.ul`
 `;
 
 const RefreshBtn = styled.button`
+  position: relative;
+  right: 20px;
   background: #ffffff;
   padding: 0;
   display: flex;
