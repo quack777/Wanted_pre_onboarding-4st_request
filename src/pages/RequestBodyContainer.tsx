@@ -22,7 +22,6 @@ const Container = ({ isSidebar, handle }: Props) => {
       onClick={() => {
         handle(false);
       }}
-      style={{}}
     >
       <Layout>
         <TextHeader>

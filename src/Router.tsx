@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/main/MainPage';
 import Nav from '../src/components/nav/Nav';
 import SideNav from '../src/components/nav/SideNav';
+import MainPage from './pages/main/MainPage';
 
 const Router: FC = () => {
   const [isSidebar, setIsSidebar] = useState<boolean>(false);
