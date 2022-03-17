@@ -31,7 +31,7 @@ const CardBoard: FC<InfoType> = (info: InfoType) => {
           </TitleInfoContainer>
           <ClientInfo>{client}</ClientInfo>
         </TopInformationContainer>
-        <DueInfo>{due}</DueInfo>
+        <DueInfo>{due}까지 납기</DueInfo>
       </FrontInformationContainer>
       <BorderLine />
       <BottomInformationContainer>
@@ -42,8 +42,8 @@ const CardBoard: FC<InfoType> = (info: InfoType) => {
           <SubInfoName>재료</SubInfoName>
         </SubInfoNameContainer>
         <SubInfoContainer>
-          <SubInfo>{count}</SubInfo>
-          <SubInfo>{amount}</SubInfo>
+          <SubInfo>{count.toLocaleString()}개</SubInfo>
+          <SubInfo>{amount.toLocaleString()}개</SubInfo>
           <SubInfo>{checkCurrentElemNum(method)}</SubInfo>
           <SubInfo>{checkCurrentElemNum(material)}</SubInfo>
         </SubInfoContainer>
@@ -92,6 +92,8 @@ const TitleInfoContainer = styled.div`
 `;
 
 const TitleInfo = styled.div`
+  font-family: 'Noto Sans KR Bold';
+  font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: #323d45;
@@ -114,6 +116,8 @@ const StatusInfo = styled.div`
 `;
 
 const ClientInfo = styled.div`
+  font-family: 'Noto Sans KR Medium';
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   color: #323d45;
