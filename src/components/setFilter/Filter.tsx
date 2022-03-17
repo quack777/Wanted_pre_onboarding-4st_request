@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
@@ -23,20 +23,19 @@ const materials = [
   { id: 4, name: '강철', select: false },
 ];
 
-/* interface Dropbox = {
-  methodsUl: boolean;
-} */
-
 type Dropbox = { methodsUl: boolean; materialsUl: boolean };
 
 const Filter: FC = () => {
   const [checkedMethods, SetCheckedMethods] = useState<string[]>([]);
   const [checkedMaterials, SetCheckedMaterials] = useState<string[]>([]);
   const [dropboxIsActive, SetDropboxIsActive] = useState<Dropbox>({ methodsUl: false, materialsUl: false });
+
   const dispatch = useDispatch();
+
   const updateCheckMethod = useCallback((method: string) => dispatch(addMethod({ method })), [dispatch]);
   const removeCheckMethod = useCallback((method: string) => dispatch(deleteMethod({ method })), [dispatch]);
   const clearCheckMethod = useCallback(() => dispatch(clearMehotd()), [dispatch]);
+
   const updateCheckMaterial = useCallback((material: string) => dispatch(addMaterial({ material })), [dispatch]);
   const removeCheckMaterial = useCallback((material: string) => dispatch(deleteMaterial({ material })), [dispatch]);
   const clearCheckMaterial = useCallback(() => dispatch(clearMaterial()), [dispatch]);
@@ -92,9 +91,9 @@ const Filter: FC = () => {
         <DropdownBtn type="button" isChecked={checkedMethods.length > 0}>
           <p>가공방식{checkedMethods.length > 0 && <span>({checkedMethods.length})</span>}</p>
           {checkedMethods.length > 0 ? (
-            <img alt="이미지" src="Image/icon_arrowDropDownCheck.png" />
+            <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
           ) : (
-            <img alt="이미지" src="Image/icon_arrowdropdown.png" />
+            <img alt="arrowDropDwon" src="Image/icon_arrowdropdown.png" />
           )}
         </DropdownBtn>
         <BlinkBox />
@@ -121,9 +120,9 @@ const Filter: FC = () => {
         <DropdownBtn type="button" style={{ width: '78px' }} isChecked={checkedMaterials.length > 0}>
           <p>재료{checkedMaterials.length > 0 && <span>({checkedMaterials.length})</span>}</p>
           {checkedMaterials.length > 0 ? (
-            <img alt="이미지" src="Image/icon_arrowDropDownCheck.png" />
+            <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
           ) : (
-            <img alt="이미지" src="Image/icon_arrowdropdown.png" />
+            <img alt="arrowDropDwon" src="Image/icon_arrowdropdown.png" />
           )}
         </DropdownBtn>
         <BlinkBox />
@@ -149,7 +148,7 @@ const Filter: FC = () => {
       {(checkedMethods.length > 0 || checkedMaterials.length > 0) && (
         <ThirdSection>
           <RefreshBtn type="button" onClick={clickOnResetChecked}>
-            <img alt="되돌리기" src="Image/icon_refresh.png" />
+            <img alt="filltering_reset" src="Image/icon_refresh.png" />
             <p>필터링 리셋</p>
           </RefreshBtn>
         </ThirdSection>
