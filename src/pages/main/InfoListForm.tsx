@@ -9,16 +9,16 @@ import type { ContainerType } from '../../types/styles/infoListForm/ContainerTyp
 const InfoListForm: FC<OptionalProps> = ({ method, material, status }) => {
   const { infoList, sortedInfoList, isEmpty } = useInfoListState({ method, material, status });
 
-  const currentInfoList = sortedInfoList.length === 0 ? infoList : sortedInfoList;
-  console.log(currentInfoList);
+  // const currentInfoList = sortedInfoList.length === 0 ? infoList : sortedInfoList;
+  console.log(sortedInfoList);
   return (
-    <Container isEmpty={isEmpty}>
-      {isEmpty ? (
+    <Container isEmpty={sortedInfoList.length <= 0}>
+      {sortedInfoList.length <= 0 ? (
         <GuideLine>
           <FrontInformation>조건에 맞는 견적 요청이 없습니다.</FrontInformation>
         </GuideLine>
       ) : (
-        currentInfoList.map((info: InfoType, index) => {
+        sortedInfoList.map((info: InfoType, index) => {
           return <CardBoard key={info.id} {...info} index={index} />;
         })
       )}

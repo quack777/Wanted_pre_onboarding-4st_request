@@ -13,6 +13,7 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
     const getData = async () => {
       const result: InfoType[] = await infoListAPI.getInfoList();
       setInfoList(result);
+      setSortedInfoList(result);
     };
     getData();
   }, []);
@@ -68,7 +69,7 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
         setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
       }
     } else {
-      setSortedInfoList([]);
+      setSortedInfoList(infoList);
     }
   };
 
@@ -81,7 +82,7 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
         setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
       }
     } else {
-      setSortedInfoList([]);
+      setSortedInfoList(infoList);
     }
   };
 
