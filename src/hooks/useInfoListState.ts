@@ -75,6 +75,15 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
     setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
   };
 
+  const checkStatusInfoList = () => {
+    if (status) {
+      console.log(status);
+      setSortedInfoList(infoList.filter((list) => list.status === '상담중'));
+    } else {
+      setSortedInfoList(infoList);
+    }
+  };
+
   useEffect(() => {
     checkMethodInfoList();
   }, [method]);
@@ -82,6 +91,10 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   useEffect(() => {
     checkMaterialInfoList();
   }, [material]);
+
+  useEffect(() => {
+    checkStatusInfoList();
+  }, [status]);
 
   /* const checkSortedInfoList = (
     currentSort: string[],
