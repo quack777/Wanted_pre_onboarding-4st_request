@@ -19,66 +19,84 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
   const includeMethod = (listMethod: string[]) => {
     console.log(listMethod);
-    if (method.length > 0) {
-      if (listMethod.length > method.length) {
-        if (listMethod.filter((x) => method.includes(x)).length > 0) {
-          return true;
-        }
-        return false;
+    if (listMethod.length > method.length) {
+      if (listMethod.filter((x) => method.includes(x)).length > 0) {
+        return true;
       }
-      if (listMethod.length < method.length) {
-        if (method.filter((x) => listMethod.includes(x)).length > 0) {
-          return true;
-        }
-        return false;
-      }
-      // return JSON.stringify(listMethod) === JSON.stringify(method);
+      return false;
+    }
+    if (listMethod.length < method.length) {
       if (method.filter((x) => listMethod.includes(x)).length > 0) {
         return true;
       }
       return false;
     }
-    return true;
+    // return JSON.stringify(listMethod) === JSON.stringify(method);
+    if (method.filter((x) => listMethod.includes(x)).length > 0) {
+      return true;
+    }
+    return false;
   };
 
   const includeMaterial = (listMaterial: string[]) => {
     console.log(listMaterial);
-    if (material.length > 0) {
-      if (listMaterial.length > material.length) {
-        if (listMaterial.filter((x) => material.includes(x)).length > 0) {
-          return true;
-        }
-        return false;
+    if (listMaterial.length > material.length) {
+      if (listMaterial.filter((x) => material.includes(x)).length > 0) {
+        return true;
       }
-      if (listMaterial.length < material.length) {
-        if (material.filter((x) => listMaterial.includes(x)).length > 0) {
-          return true;
-        }
-        return false;
-      }
-      // return JSON.stringify(listMaterial) === JSON.stringify(material);
+      return false;
+    }
+    if (listMaterial.length < material.length) {
       if (material.filter((x) => listMaterial.includes(x)).length > 0) {
         return true;
       }
       return false;
     }
-    return true;
+    // return JSON.stringify(listMaterial) === JSON.stringify(material);
+    if (material.filter((x) => listMaterial.includes(x)).length > 0) {
+      return true;
+    }
+    return false;
   };
 
   const checkMethodInfoList = () => {
     console.log([...infoList].filter((list) => includeMethod(list.method)));
-    setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
+    if (method.length > 0) {
+      if (material.length > 0) {
+        setSortedInfoList(sortedInfoList.filter((list) => includeMethod(list.method)));
+      } else {
+        setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
+      }
+    } else {
+      setSortedInfoList([]);
+    }
   };
 
   const checkMaterialInfoList = () => {
     console.log([...infoList].filter((list) => includeMaterial(list.material)));
-    setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
+    if (material.length > 0) {
+      if (method.length > 0) {
+        setSortedInfoList(sortedInfoList.filter((list) => includeMaterial(list.material)));
+      } else {
+        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
+      }
+    } else {
+      setSortedInfoList([]);
+    }
   };
 
   const checkStatusInfoList = () => {
     if (status) {
-      console.log(status);
-      setSortedInfoList(infoList.filter((list) => list.status === '상담중'));
+      if (method.length > 0 || material.length > 0) {
+        console.log('필터선택되어있음');
+        console.log(sortedInfoList);
+        setSortedInfoList(sortedInfoList.filter((list) => list.status === '상담중'));
+      } else {
+        setSortedInfoList(infoList.filter((list) => list.status === '상담중'));
+      }
+    } else if (method.length > 0 || material.length > 0) {
+      checkMethodInfoList();
+      checkMaterialInfoList();
     } else {
       setSortedInfoList(infoList);
     }
