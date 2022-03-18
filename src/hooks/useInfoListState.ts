@@ -17,7 +17,73 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
     getData();
   }, []);
 
-  const checkSortedInfoList = (
+  const includeMethod = (listMethod: string[]) => {
+    console.log(listMethod);
+    if (method.length > 0) {
+      if (listMethod.length > method.length) {
+        if (listMethod.filter((x) => method.includes(x)).length > 0) {
+          return true;
+        }
+        return false;
+      }
+      if (listMethod.length < method.length) {
+        if (method.filter((x) => listMethod.includes(x)).length > 0) {
+          return true;
+        }
+        return false;
+      }
+      // return JSON.stringify(listMethod) === JSON.stringify(method);
+      if (method.filter((x) => listMethod.includes(x)).length > 0) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  };
+
+  const includeMaterial = (listMaterial: string[]) => {
+    console.log(listMaterial);
+    if (material.length > 0) {
+      if (listMaterial.length > material.length) {
+        if (listMaterial.filter((x) => material.includes(x)).length > 0) {
+          return true;
+        }
+        return false;
+      }
+      if (listMaterial.length < material.length) {
+        if (material.filter((x) => listMaterial.includes(x)).length > 0) {
+          return true;
+        }
+        return false;
+      }
+      // return JSON.stringify(listMaterial) === JSON.stringify(material);
+      if (material.filter((x) => listMaterial.includes(x)).length > 0) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  };
+
+  const checkMethodInfoList = () => {
+    console.log([...infoList].filter((list) => includeMethod(list.method)));
+    setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
+  };
+
+  const checkMaterialInfoList = () => {
+    console.log([...infoList].filter((list) => includeMaterial(list.material)));
+    setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
+  };
+
+  useEffect(() => {
+    checkMethodInfoList();
+  }, [method]);
+
+  useEffect(() => {
+    checkMaterialInfoList();
+  }, [material]);
+
+  /* const checkSortedInfoList = (
     currentSort: string[],
     prevSort: string[],
     currentSortName: string,
@@ -104,7 +170,7 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
     if (currentInfoListNum === 0) setIsEmpty(true);
     else setIsEmpty(false);
-  }, [sortedInfoList]);
+  }, [sortedInfoList]); */
 
   return { infoList, sortedInfoList, isEmpty };
 };

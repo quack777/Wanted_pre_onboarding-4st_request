@@ -11,7 +11,6 @@ const material = createReducer<Material, MaterialAction>(initailState, {
   [ADD_MATERIAL]: (state, action) =>
     produce(state, (draft) => {
       draft.material.push(action.payload.material);
-      console.log(state);
     }),
   [DELETE_MATERIAL]: (state, action) => ({
     ...state,
