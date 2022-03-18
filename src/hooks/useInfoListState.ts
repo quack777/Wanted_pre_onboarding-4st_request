@@ -68,6 +68,8 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
       } else {
         setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
       }
+    } else if (status) {
+      checkStatusInfoList();
     } else {
       setSortedInfoList(infoList);
     }
@@ -81,6 +83,8 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
       } else {
         setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
       }
+    } else if (status) {
+      checkStatusInfoList();
     } else {
       setSortedInfoList(infoList);
     }
