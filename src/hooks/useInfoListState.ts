@@ -59,7 +59,8 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   const checkMethodInfoList = () => {
     if (method.length > 0) {
       if (material.length > 0) {
-        setSortedInfoList(sortedInfoList.filter((list) => includeMethod(list.method)));
+        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)).filter((list) => includeMethod(list.method)))
+        // setSortedInfoList(sortedInfoList.filter((list) => includeMethod(list.method)));
       } else {
         setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
       }
@@ -75,11 +76,13 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   const checkMaterialInfoList = () => {
     if (material.length > 0) {
       if (method.length > 0) {
-        setSortedInfoList(sortedInfoList.filter((list) => includeMaterial(list.material)));
+        setSortedInfoList(infoList.filter((list) => includeMethod(list.method)).filter((list) => includeMaterial(list.material)))
+        // setSortedInfoList(sortedInfoList.filter((list) => includeMaterial(list.material)));
       } else {
         setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
       }
     } else if (status) {
+      console.log("상담 중이 선택되어있음")
       checkStatusInfoList();
     } else if (method.length > 0){
       checkMethodInfoList();
