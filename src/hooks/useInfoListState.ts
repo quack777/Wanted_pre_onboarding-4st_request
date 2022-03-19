@@ -19,7 +19,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   }, []);
 
   const includeMethod = (listMethod: string[]) => {
-    console.log(listMethod);
     if (listMethod.length > method.length) {
       if (listMethod.filter((x) => method.includes(x)).length > 0) {
         return true;
@@ -39,7 +38,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   };
 
   const includeMaterial = (listMaterial: string[]) => {
-    console.log(listMaterial);
     if (listMaterial.length > material.length) {
       if (listMaterial.filter((x) => material.includes(x)).length > 0) {
         return true;
@@ -59,7 +57,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   };
 
   const checkMethodInfoList = () => {
-    console.log([...infoList].filter((list) => includeMethod(list.method)));
     if (method.length > 0) {
       if (material.length > 0) {
         setSortedInfoList(sortedInfoList.filter((list) => includeMethod(list.method)));
@@ -76,7 +73,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   };
 
   const checkMaterialInfoList = () => {
-    console.log([...infoList].filter((list) => includeMaterial(list.material)));
     if (material.length > 0) {
       if (method.length > 0) {
         setSortedInfoList(sortedInfoList.filter((list) => includeMaterial(list.material)));
