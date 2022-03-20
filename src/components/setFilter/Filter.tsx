@@ -84,7 +84,7 @@ const Filter: FC = () => {
   return (
     <FilteringLayout>
       <FirstSection onMouseEnter={showMethodBox} onMouseLeave={hiddenMethodBox}>
-        <DropdownBtn type="button" isChecked={checkedMethodInfoList.length > 0}>
+        <DropdownBtn type="button" name="methodBtn" isChecked={checkedMethodInfoList.length > 0}>
           <p>가공방식{checkedMethodInfoList.length > 0 && <span>({checkedMethodInfoList.length})</span>}</p>
           {checkedMethodInfoList.length > 0 ? (
             <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
@@ -113,7 +113,7 @@ const Filter: FC = () => {
       </FirstSection>
 
       <SecondSection onMouseEnter={showMaterialBox} onMouseLeave={hiddenMaterialBox}>
-        <DropdownBtn type="button" style={{ width: '78px' }} isChecked={checkedMaterialInfoList.length > 0}>
+        <DropdownBtn type="button" name="materialBtn" isChecked={checkedMaterialInfoList.length > 0}>
           <p>재료{checkedMaterialInfoList.length > 0 && <span>({checkedMaterialInfoList.length})</span>}</p>
           {checkedMaterialInfoList.length > 0 ? (
             <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
@@ -177,7 +177,7 @@ const ThirdSection = styled.section`
 `;
 
 const DropdownBtn = styled.button`
-  width: 98px;
+  width: ${({ name }) => (name === 'methodBtn' ? '98px' : '78px')};
   height: 32px;
   background: #ffffff;
   border: 1px solid #939fa5;
