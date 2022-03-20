@@ -16,73 +16,73 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
     getData();
   }, []);
 
-  const includeMethod = (listMethod: string[]) => {
+  const isIncludeMethod = (listMethod: string[]) => {
     if (method.filter((x) => listMethod.includes(x)).length > 0) {
       return true;
     }
     return false;
   };
 
-  const includeMaterial = (listMaterial: string[]) => {
+  const isIncludeMaterial = (listMaterial: string[]) => {
     if (material.filter((x) => listMaterial.includes(x)).length > 0) {
       return true;
     }
     return false;
   };
 
-  const checkMethodInfoList = () => {
+  const checkedMethod = () => {
     if (method.length > 0) {
       if (status && material.length > 0) {
         setSortedInfoList(
           infoList.filter(
-            (list) => list.status === '상담중' && includeMethod(list.method) && includeMaterial(list.material),
+            (list) => list.status === '상담중' && isIncludeMethod(list.method) && isIncludeMaterial(list.material),
           ),
         );
       } else if (status) {
-        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && includeMethod(list.method)));
+        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && isIncludeMethod(list.method)));
       } else if (material.length > 0) {
-        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material) && includeMethod(list.method)));
+        setSortedInfoList(infoList.filter((list) => isIncludeMaterial(list.material) && isIncludeMethod(list.method)));
       } else {
-        setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
+        setSortedInfoList(infoList.filter((list) => isIncludeMethod(list.method)));
       }
     } else if (status && material.length > 0) {
-      checkMaterialInfoList();
+      checkedMaterial();
     } else if (status) {
-      checkStatusInfoList();
+      checkedStatus();
     } else if (material.length > 0) {
-      checkMaterialInfoList();
+      checkedMaterial();
     } else {
       setSortedInfoList(infoList);
     }
   };
 
-  const checkMaterialInfoList = () => {
+  const checkedMaterial = () => {
     if (material.length > 0) {
       if (status && method.length > 0) {
         setSortedInfoList(
           infoList.filter(
-            (list) => list.status === '상담중' && includeMaterial(list.material) && includeMethod(list.method),
+            (list) => list.status === '상담중' && isIncludeMaterial(list.material) && isIncludeMethod(list.method),
           ),
         );
       } else if (status) {
-        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && includeMaterial(list.material)));
+        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && isIncludeMaterial(list.material)));
       } else if (method.length > 0) {
-        setSortedInfoList(infoList.filter((list) => includeMethod(list.method) && includeMaterial(list.material)));
+        setSortedInfoList(infoList.filter((list) => isIncludeMethod(list.method) && isIncludeMaterial(list.material)));
       } else {
-        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
+        setSortedInfoList(infoList.filter((list) => isIncludeMaterial(list.material)));
       }
     } else if (status && method.length > 0) {
-      checkMethodInfoList();
+      checkedMethod();
     } else if (status) {
-      checkStatusInfoList();
+      checkedStatus();
     } else if (method.length > 0) {
-      checkMethodInfoList();
+      checkedMethod();
     } else {
       setSortedInfoList(infoList);
     }
   };
 
-  const checkStatusInfoList = () => {
+  const checkedStatus = () => {
     if (status) {
       if (method.length > 0 || material.length > 0) {
         setSortedInfoList(sortedInfoList.filter((list) => list.status === '상담중'));
@@ -90,23 +90,23 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
         setSortedInfoList(infoList.filter((list) => list.status === '상담중'));
       }
     } else if (method.length > 0 || material.length > 0) {
-      checkMethodInfoList();
-      checkMaterialInfoList();
+      checkedMethod();
+      checkedMaterial();
     } else {
       setSortedInfoList(infoList);
     }
   };
 
   useEffect(() => {
-    checkMethodInfoList();
+    checkedMethod();
   }, [method]);
 
   useEffect(() => {
-    checkMaterialInfoList();
+    checkedMaterial();
   }, [material]);
 
   useEffect(() => {
-    checkStatusInfoList();
+    checkedStatus();
   }, [status]);
 
   return { sortedInfoList };
