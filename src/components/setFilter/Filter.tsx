@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../modules';
 import {
   addMaterial,
   addMethod,
@@ -26,9 +27,10 @@ const materials = [
 type Dropbox = { methodsUl: boolean; materialsUl: boolean };
 
 const Filter: FC = () => {
-  const [checkedMethods, SetCheckedMethods] = useState<string[]>([]);
-  const [checkedMaterials, SetCheckedMaterials] = useState<string[]>([]);
   const [dropboxIsActive, SetDropboxIsActive] = useState<Dropbox>({ methodsUl: false, materialsUl: false });
+
+  const checkedMethodInfoList = useSelector(({ filter }: RootState) => filter.method);
+  const checkedMaterialInfoList = useSelector(({ filter }: RootState) => filter.material);
 
   const dispatch = useDispatch();
 
@@ -43,10 +45,8 @@ const Filter: FC = () => {
   const handleChangeMethod = (e: ChangeEvent<HTMLInputElement>): void => {
     const { checked, name } = e.target;
     if (checked) {
-      SetCheckedMethods([...checkedMethods, name]);
       updateCheckMethod(name);
     } else {
-      SetCheckedMethods(checkedMethods.filter((method) => method !== name));
       removeCheckMethod(name);
     }
   };
@@ -54,17 +54,13 @@ const Filter: FC = () => {
   const handleChangeMaterial = (e: ChangeEvent<HTMLInputElement>): void => {
     const { checked, name } = e.target;
     if (checked) {
-      SetCheckedMaterials([...checkedMaterials, name]);
       updateCheckMaterial(name);
     } else {
-      SetCheckedMaterials(checkedMaterials.filter((material) => material !== name));
       removeCheckMaterial(name);
     }
   };
 
   const clickOnResetChecked = (): void => {
-    SetCheckedMethods([]);
-    SetCheckedMaterials([]);
     clearCheckMethod();
     clearCheckMaterial();
   };
@@ -88,9 +84,9 @@ const Filter: FC = () => {
   return (
     <FilteringLayout>
       <FirstSection onMouseEnter={showMethodBox} onMouseLeave={hiddenMethodBox}>
-        <DropdownBtn type="button" isChecked={checkedMethods.length > 0}>
-          <p>가공방식{checkedMethods.length > 0 && <span>({checkedMethods.length})</span>}</p>
-          {checkedMethods.length > 0 ? (
+        <DropdownBtn type="button" isChecked={checkedMethodInfoList.length > 0}>
+          <p>가공방식{checkedMethodInfoList.length > 0 && <span>({checkedMethodInfoList.length})</span>}</p>
+          {checkedMethodInfoList.length > 0 ? (
             <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
           ) : (
             <img alt="arrowDropDwon" src="Image/icon_arrowdropdown.png" />
@@ -106,7 +102,7 @@ const Filter: FC = () => {
                     type="checkbox"
                     name={method.name}
                     onChange={(e) => handleChangeMethod(e)}
-                    checked={!!checkedMethods.includes(method.name)}
+                    checked={!!checkedMethodInfoList.includes(method.name)}
                   />
                   {method.name}
                 </li>
@@ -117,9 +113,9 @@ const Filter: FC = () => {
       </FirstSection>
 
       <SecondSection onMouseEnter={showMaterialBox} onMouseLeave={hiddenMaterialBox}>
-        <DropdownBtn type="button" style={{ width: '78px' }} isChecked={checkedMaterials.length > 0}>
-          <p>재료{checkedMaterials.length > 0 && <span>({checkedMaterials.length})</span>}</p>
-          {checkedMaterials.length > 0 ? (
+        <DropdownBtn type="button" style={{ width: '78px' }} isChecked={checkedMaterialInfoList.length > 0}>
+          <p>재료{checkedMaterialInfoList.length > 0 && <span>({checkedMaterialInfoList.length})</span>}</p>
+          {checkedMaterialInfoList.length > 0 ? (
             <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
           ) : (
             <img alt="arrowDropDown" src="Image/icon_arrowdropdown.png" />
@@ -135,7 +131,7 @@ const Filter: FC = () => {
                     type="checkbox"
                     name={material.name}
                     onChange={(e) => handleChangeMaterial(e)}
-                    checked={!!checkedMaterials.includes(material.name)}
+                    checked={!!checkedMaterialInfoList.includes(material.name)}
                   />
                   {material.name}
                 </li>
@@ -145,7 +141,7 @@ const Filter: FC = () => {
         )}
       </SecondSection>
 
-      {(checkedMethods.length > 0 || checkedMaterials.length > 0) && (
+      {(checkedMethodInfoList.length > 0 || checkedMaterialInfoList.length > 0) && (
         <ThirdSection>
           <RefreshBtn type="button" onClick={clickOnResetChecked}>
             <img alt="filltering_reset" src="Image/icon_refresh.png" />
