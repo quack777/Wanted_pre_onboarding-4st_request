@@ -216,7 +216,6 @@ const UlBox = styled.ul`
   padding-bottom: 17px;
   z-index: 2;
   & > li {
-    font-family: Noto Sans KR Medium;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -246,7 +245,6 @@ const RefreshBtn = styled.button`
     margin-right: 12px;
   }
   & > p {
-    font-family: Noto Sans KR Regular;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;

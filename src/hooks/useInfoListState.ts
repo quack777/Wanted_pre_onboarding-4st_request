@@ -7,8 +7,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   const [infoList, setInfoList] = useState<InfoType[]>([]);
   const [sortedInfoList, setSortedInfoList] = useState<InfoType[]>([]);
 
-  const [isEmpty, setIsEmpty] = useState<boolean>(false);
-
   useEffect(() => {
     const getData = async () => {
       const result: InfoType[] = await infoListAPI.getInfoList();
@@ -103,7 +101,7 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
     checkStatusInfoList();
   }, [status]);
 
-  return { infoList, sortedInfoList, isEmpty };
+  return { sortedInfoList };
 };
 
 export default useInfoListState;
