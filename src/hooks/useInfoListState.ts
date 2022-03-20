@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { InfoType } from '../types/components/infolist';
 import type { OptionalProps } from '../types/props/optionalProps';
 import * as infoListAPI from '../api/getInforList';
@@ -32,17 +32,21 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
   const checkMethodInfoList = () => {
     if (method.length > 0) {
-      if (status) {
+      if (status && material.length > 0) {
         setSortedInfoList(
-          infoList.filter((list) => list.status === '상담중').filter((list) => includeMethod(list.method)),
+          infoList.filter(
+            (list) => list.status === '상담중' && includeMethod(list.method) && includeMaterial(list.material),
+          ),
         );
+      } else if (status) {
+        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && includeMethod(list.method)));
       } else if (material.length > 0) {
-        setSortedInfoList(
-          infoList.filter((list) => includeMaterial(list.material)).filter((list) => includeMethod(list.method)),
-        );
+        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material) && includeMethod(list.method)));
       } else {
         setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
       }
+    } else if (status && material.length > 0) {
+      checkMaterialInfoList();
     } else if (status) {
       checkStatusInfoList();
     } else if (material.length > 0) {
@@ -54,17 +58,21 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
   const checkMaterialInfoList = () => {
     if (material.length > 0) {
-      if (status) {
+      if (status && method.length > 0) {
         setSortedInfoList(
-          infoList.filter((list) => list.status === '상담중').filter((list) => includeMaterial(list.material)),
+          infoList.filter(
+            (list) => list.status === '상담중' && includeMaterial(list.material) && includeMethod(list.method),
+          ),
         );
+      } else if (status) {
+        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && includeMaterial(list.material)));
       } else if (method.length > 0) {
-        setSortedInfoList(
-          infoList.filter((list) => includeMethod(list.method)).filter((list) => includeMaterial(list.material)),
-        );
+        setSortedInfoList(infoList.filter((list) => includeMethod(list.method) && includeMaterial(list.material)));
       } else {
         setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
       }
+    } else if (status && method.length > 0) {
+      checkMethodInfoList();
     } else if (status) {
       checkStatusInfoList();
     } else if (method.length > 0) {
