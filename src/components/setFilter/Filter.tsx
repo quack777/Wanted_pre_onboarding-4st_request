@@ -12,16 +12,16 @@ import {
 } from '../../modules/filter/actions';
 
 const methods = [
-  { id: 0, name: '밀링', select: false },
-  { id: 1, name: '선반', select: false },
+  { id: 1, name: '선반' },
+  { id: 0, name: '밀링' },
 ];
 
 const materials = [
-  { id: 0, name: '알루미늄', select: false },
-  { id: 1, name: '탄소강', select: false },
-  { id: 2, name: '구리', select: false },
-  { id: 3, name: '스테인리스강', select: false },
-  { id: 4, name: '강철', select: false },
+  { id: 0, name: '알루미늄' },
+  { id: 1, name: '탄소강' },
+  { id: 2, name: '구리' },
+  { id: 3, name: '스테인리스강' },
+  { id: 4, name: '강철' },
 ];
 
 type Dropbox = { methodsUl: boolean; materialsUl: boolean };
