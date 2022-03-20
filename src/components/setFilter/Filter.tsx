@@ -5,7 +5,7 @@ import {
   addMaterial,
   addMethod,
   clearMaterial,
-  clearMehotd,
+  clearMethod,
   deleteMaterial,
   deleteMethod,
 } from '../../modules/filter/actions';
@@ -34,7 +34,7 @@ const Filter: FC = () => {
 
   const updateCheckMethod = useCallback((method: string) => dispatch(addMethod({ method })), [dispatch]);
   const removeCheckMethod = useCallback((method: string) => dispatch(deleteMethod({ method })), [dispatch]);
-  const clearCheckMethod = useCallback(() => dispatch(clearMehotd()), [dispatch]);
+  const clearCheckMethod = useCallback(() => dispatch(clearMethod()), [dispatch]);
 
   const updateCheckMaterial = useCallback((material: string) => dispatch(addMaterial({ material })), [dispatch]);
   const removeCheckMaterial = useCallback((material: string) => dispatch(deleteMaterial({ material })), [dispatch]);
@@ -122,7 +122,7 @@ const Filter: FC = () => {
           {checkedMaterials.length > 0 ? (
             <img alt="arrowCheckDropDown" src="Image/icon_arrowDropDownCheck.png" />
           ) : (
-            <img alt="arrowDropDwon" src="Image/icon_arrowdropdown.png" />
+            <img alt="arrowDropDown" src="Image/icon_arrowdropdown.png" />
           )}
         </DropdownBtn>
         <BlinkBox />

@@ -12,9 +12,9 @@ interface Props {
 }
 
 const Container = ({ isSidebar, handle }: Props) => {
-  const method = useSelector(({ filter }: RootState) => filter.filter);
-  const material = useSelector(({ material }: RootState) => material.material);
-  const status = useSelector(({ toggle }: RootState) => toggle.ToggleOn);
+  const method = useSelector(({ filter }: RootState) => filter.method);
+  const material = useSelector(({ filter }: RootState) => filter.material);
+  const status = useSelector(({ toggle }: RootState) => toggle.isConsulting);
 
   return (
     <LayoutBox

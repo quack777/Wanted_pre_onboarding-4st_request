@@ -1,18 +1,15 @@
 import { combineReducers } from 'redux';
-import filter from './filter/reducers/method';
-import material from '../modules/filter/reducers/material';
+import filter from './filter/reducers/filter';
 import toggle from './filter/reducers/toggle';
-import { Filter, Material, ToggleState } from './filter/types';
+import { Filter, ToggleState } from './filter/types';
 
 export type RootState = {
   filter: Filter;
-  material: Material;
   toggle: ToggleState;
 };
 
 const rootReducer = combineReducers({
   filter,
-  material,
   toggle,
 });
 
