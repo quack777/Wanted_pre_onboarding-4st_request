@@ -19,18 +19,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   }, []);
 
   const includeMethod = (listMethod: string[]) => {
-    if (listMethod.length > method.length) {
-      if (listMethod.filter((x) => method.includes(x)).length > 0) {
-        return true;
-      }
-      return false;
-    }
-    if (listMethod.length < method.length) {
-      if (method.filter((x) => listMethod.includes(x)).length > 0) {
-        return true;
-      }
-      return false;
-    }
     if (method.filter((x) => listMethod.includes(x)).length > 0) {
       return true;
     }
@@ -38,18 +26,6 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   };
 
   const includeMaterial = (listMaterial: string[]) => {
-    if (listMaterial.length > material.length) {
-      if (listMaterial.filter((x) => material.includes(x)).length > 0) {
-        return true;
-      }
-      return false;
-    }
-    if (listMaterial.length < material.length) {
-      if (material.filter((x) => listMaterial.includes(x)).length > 0) {
-        return true;
-      }
-      return false;
-    }
     if (material.filter((x) => listMaterial.includes(x)).length > 0) {
       return true;
     }
@@ -58,9 +34,14 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
   const checkMethodInfoList = () => {
     if (method.length > 0) {
-      if (material.length > 0) {
-        setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)).filter((list) => includeMethod(list.method)))
-        // setSortedInfoList(sortedInfoList.filter((list) => includeMethod(list.method)));
+      if (status) {
+        setSortedInfoList(
+          infoList.filter((list) => list.status === '상담중').filter((list) => includeMethod(list.method)),
+        );
+      } else if (material.length > 0) {
+        setSortedInfoList(
+          infoList.filter((list) => includeMaterial(list.material)).filter((list) => includeMethod(list.method)),
+        );
       } else {
         setSortedInfoList(infoList.filter((list) => includeMethod(list.method)));
       }
@@ -75,16 +56,20 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
 
   const checkMaterialInfoList = () => {
     if (material.length > 0) {
-      if (method.length > 0) {
-        setSortedInfoList(infoList.filter((list) => includeMethod(list.method)).filter((list) => includeMaterial(list.material)))
-        // setSortedInfoList(sortedInfoList.filter((list) => includeMaterial(list.material)));
+      if (status) {
+        setSortedInfoList(
+          infoList.filter((list) => list.status === '상담중').filter((list) => includeMaterial(list.material)),
+        );
+      } else if (method.length > 0) {
+        setSortedInfoList(
+          infoList.filter((list) => includeMethod(list.method)).filter((list) => includeMaterial(list.material)),
+        );
       } else {
         setSortedInfoList(infoList.filter((list) => includeMaterial(list.material)));
       }
     } else if (status) {
-      console.log("상담 중이 선택되어있음")
       checkStatusInfoList();
-    } else if (method.length > 0){
+    } else if (method.length > 0) {
       checkMethodInfoList();
     } else {
       setSortedInfoList(infoList);
