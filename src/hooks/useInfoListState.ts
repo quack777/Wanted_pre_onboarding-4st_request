@@ -3,6 +3,8 @@ import type { InfoType } from '../types/components/infolist';
 import type { OptionalProps } from '../types/props/optionalProps';
 import * as infoListAPI from '../api/getInforList';
 
+const COUNSELING = '상담중';
+
 const useInfoListState = ({ method, material, status }: OptionalProps) => {
   const [infoList, setInfoList] = useState<InfoType[]>([]);
   const [sortedInfoList, setSortedInfoList] = useState<InfoType[]>([]);
@@ -35,11 +37,11 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
       if (status && material.length > 0) {
         setSortedInfoList(
           infoList.filter(
-            (list) => list.status === '상담중' && isIncludeMethod(list.method) && isIncludeMaterial(list.material),
+            (list) => list.status === COUNSELING && isIncludeMethod(list.method) && isIncludeMaterial(list.material),
           ),
         );
       } else if (status) {
-        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && isIncludeMethod(list.method)));
+        setSortedInfoList(infoList.filter((list) => list.status === COUNSELING && isIncludeMethod(list.method)));
       } else if (material.length > 0) {
         setSortedInfoList(infoList.filter((list) => isIncludeMaterial(list.material) && isIncludeMethod(list.method)));
       } else {
@@ -61,11 +63,11 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
       if (status && method.length > 0) {
         setSortedInfoList(
           infoList.filter(
-            (list) => list.status === '상담중' && isIncludeMaterial(list.material) && isIncludeMethod(list.method),
+            (list) => list.status === COUNSELING && isIncludeMaterial(list.material) && isIncludeMethod(list.method),
           ),
         );
       } else if (status) {
-        setSortedInfoList(infoList.filter((list) => list.status === '상담중' && isIncludeMaterial(list.material)));
+        setSortedInfoList(infoList.filter((list) => list.status === COUNSELING && isIncludeMaterial(list.material)));
       } else if (method.length > 0) {
         setSortedInfoList(infoList.filter((list) => isIncludeMethod(list.method) && isIncludeMaterial(list.material)));
       } else {
@@ -85,9 +87,9 @@ const useInfoListState = ({ method, material, status }: OptionalProps) => {
   const checkedStatus = () => {
     if (status) {
       if (method.length > 0 || material.length > 0) {
-        setSortedInfoList(sortedInfoList.filter((list) => list.status === '상담중'));
+        setSortedInfoList(sortedInfoList.filter((list) => list.status === COUNSELING));
       } else {
-        setSortedInfoList(infoList.filter((list) => list.status === '상담중'));
+        setSortedInfoList(infoList.filter((list) => list.status === COUNSELING));
       }
     } else if (method.length > 0 || material.length > 0) {
       checkedMethod();
