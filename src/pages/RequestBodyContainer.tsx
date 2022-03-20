@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import InfoListForm from './main/InfoListForm';
@@ -11,7 +11,7 @@ interface Props {
   handle(a: boolean): void;
 }
 
-const Container = ({ isSidebar, handle }: Props) => {
+const Container: FC<Props> = ({ isSidebar, handle }) => {
   const method = useSelector(({ filter }: RootState) => filter.method);
   const material = useSelector(({ filter }: RootState) => filter.material);
   const status = useSelector(({ toggle }: RootState) => toggle.isConsulting);

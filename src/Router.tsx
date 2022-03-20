@@ -12,7 +12,7 @@ const Router: FC = () => {
   return (
     <BrowserRouter>
       <Nav isSidebar={isSidebar} handle={handle} />
-      <SideNav isSidebar={isSidebar} handle={handle} />
+      <SideNav isSidebar={isSidebar} />
       <Routes>
         <Route path="/" element={<MainPage isSidebar={isSidebar} handle={handle} />} />
       </Routes>

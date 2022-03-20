@@ -3,10 +3,9 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   isSidebar: boolean;
-  handle(a: boolean): void;
 }
 
-const SideNav = ({ isSidebar, handle }: Props) => {
+const SideNav = ({ isSidebar }: Props) => {
   return (
     <SideSlider isSidebar={isSidebar}>
       <SlideSliderTitle>

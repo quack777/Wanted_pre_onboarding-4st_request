@@ -17,7 +17,7 @@ const filter = createReducer<Filter, FilterAction>(initailState, {
     ...state,
     method: state.method.filter((method) => method !== action.payload.method),
   }),
-  [CLEAR_METHOD]: (state, action) => ({
+  [CLEAR_METHOD]: (state) => ({
     ...state,
     method: [],
   }),
@@ -29,7 +29,7 @@ const filter = createReducer<Filter, FilterAction>(initailState, {
     ...state,
     material: state.material.filter((material) => material !== action.payload.material),
   }),
-  [CLEAR_MATERIAL]: (state, action) => ({
+  [CLEAR_MATERIAL]: (state) => ({
     ...state,
     material: [],
   }),

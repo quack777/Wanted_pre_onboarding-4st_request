@@ -4,7 +4,7 @@ import Button from '../../components/common/Button';
 import type { InfoType } from '../../types/components/infolist';
 import type { ContainerType } from '../../types/styles/cardboard/ContainerType';
 
-const CardBoard: FC<InfoType> = (info: InfoType) => {
+const CardBoard: FC<InfoType> = (info) => {
   const { title, client, due, count, amount, method, material, status, index } = info;
 
   const checkCurrentElemNum = (currentList: string[]): string => {

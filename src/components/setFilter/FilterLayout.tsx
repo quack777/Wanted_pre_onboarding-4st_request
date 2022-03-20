@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import Filter from './Filter';
 import Toggle from './Toggle';
 
-const FilterLayout = () => {
+const FilterLayout: FC = () => {
   return (
     <FilterSection>
       <Filter />

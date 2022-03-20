@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../modules';
 import { isToggleOn } from '../../modules/filter/actions';
 
-const Toggle = () => {
+const Toggle: FC = () => {
   const dispatch = useDispatch();
   const isToggleHanddle = useCallback(() => dispatch(isToggleOn()), [dispatch]);
   const isConsulting = useSelector(({ toggle }: RootState) => toggle.isConsulting);
