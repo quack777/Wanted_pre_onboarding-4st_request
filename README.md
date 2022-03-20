@@ -1,5 +1,4 @@
-# ☞ REQUEST_PAGE☜(ﾟヮﾟ ☜)
-
+# Redux를 이용한 주문상품 요청서
 - 배포주소 : [https://wantedrequire.herokuapp.com/](https://wantedrequire.herokuapp.com/)
 - 기술 스택
 
