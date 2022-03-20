@@ -69,6 +69,10 @@ const Container = styled.article<ContainerType>`
   border: 1px solid #e5e5e5;
   border-radius: 4px;
 
+  &:hover {
+    border: 2px solid #2196f3;
+  }
+
   ${({ index }) =>
     (index + 1) % 3 === 0 &&
     css`
