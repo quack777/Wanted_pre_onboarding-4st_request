@@ -95,7 +95,6 @@ const TitleInfoContainer = styled.div`
 `;
 
 const TitleInfo = styled.div`
-  font-family: 'Noto Sans KR Bold';
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -119,7 +118,6 @@ const StatusInfo = styled.div`
 `;
 
 const ClientInfo = styled.div`
-  font-family: 'Noto Sans KR Medium';
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
