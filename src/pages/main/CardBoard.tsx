@@ -73,6 +73,9 @@ const Container = styled.article<ContainerType>`
     (index + 1) % 3 === 0 &&
     css`
       margin-right: 0;
+      @media (max-width: 600px) {
+        margin-right: 16px;
+      } ;
     `}
 `;
 
