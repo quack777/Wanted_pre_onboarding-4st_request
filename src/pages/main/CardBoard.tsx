@@ -105,7 +105,7 @@ const StatusInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px 8px;
+  padding: 0px 8px;
   background-color: #ffffff;
   border: 1px solid #ffa000;
   border-radius: 12px;
